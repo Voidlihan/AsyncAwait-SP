@@ -7,8 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <StackPanel HorizontalAlignment="Left" Height="372" Margin="99,47,0,0" VerticalAlignment="Top" Width="596" Orientation="Horizontal">
-            <Button Content="Button" HorizontalAlignment="Center" Margin="200,346,278,0" RenderTransformOrigin="0.5,0.5" Width="194" Click="Button_Click" Background="Blue"/>
+        <StackPanel HorizontalAlignment="Left" Height="372" Margin="99,47,0,0" VerticalAlignment="Top" Width="596" Orientation="Vertical">
+            <TextBox x:Name="textBoxLogin" TextWrapping="Wrap" Margin="193,150,193,0" Text="Ваш логин" Height="34" FontSize="17" Foreground="DarkGray" BorderBrush="Blue"/>
+            <TextBox x:Name="textBoxPassword" TextWrapping="Wrap" Margin="193,10,193,0" Text="Ваш пароль" Height="34" FontSize="17" Foreground="DarkGray" BorderBrush="Blue"/>
+            <Button Content="Войти" Margin="193,50,193,0" Width="210" Click="SignIn" Background="Blue" Foreground="White" FontWeight="Bold" Height="36" FontSize="20"/>
         </StackPanel>
 
     </Grid>

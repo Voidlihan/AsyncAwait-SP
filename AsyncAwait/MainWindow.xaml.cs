@@ -23,11 +23,48 @@ namespace AsyncAwait
         public MainWindow()
         {
             InitializeComponent();
+            DataFill("alihan", "alihan228", "123");
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void DataFill(string name, string login, string password)
         {
+            using (var context = new Context())
+            {
+                var set = context.Set<Seller>();
+                var seller = new Seller
+                {
+                    Name = name,
+                    Login = login,
+                    Password = password
+                };
+                set.Add(seller);
+                var product1 = context.Set<Product>();
+                product1.Add(new Product
+                {
+                    Name = "Melon",
+                    Seller = name,
+                    SellerId = seller.Id,
+                    StartDay = DateTime.Now,
+                    DeletedDate = null,
+                    Price = 180,
+                    Count = 1,
+                });
+                await context.SaveChangesAsync();
+            }
+        }
+        private async Task<Seller> FindUser(string login)
+        {
+            using (var context = new Context())
+            {
+                return await context.Sellers.FindAsync(login);
+            }
+        }
 
+        private void SignIn(object sender, RoutedEventArgs e)
+        {
+            var cur = FindUser(textBoxLogin.Text);
+            var window = new WindowProduct(cur);
+            window.Show();
         }
     }
 }
